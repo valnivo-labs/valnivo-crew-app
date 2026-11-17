@@ -1,7 +1,7 @@
 {
   "$schema": "../gen/schemas/desktop-schema.json",
   "identifier": "default",
-  "description": "Nothing for the page beyond this: Valnivo Crew (crew.valnivo.eu) may show a notification, set the Dock badge, read the app version, and check, download and install a signed update, then restart. No other command, no other site.",
+  "description": "Nothing for the page beyond this: Valnivo Crew (crew.valnivo.eu) may show a notification, set the Dock badge, read the app version, and check, download and install a signed update, then restart, and reach the app's own screen helper (Give control) through the app. No other command, no other site.",
   "windows": [
     "main"
   ],
@@ -15,6 +15,7 @@
     "core:window:allow-set-badge-count",
     "core:app:allow-version",
     "updater:default",
-    "process:allow-restart"
+    "process:allow-restart",
+    "allow-helper"
   ]
 }

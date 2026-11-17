@@ -1,0 +1,11 @@
+# Automatically generated - DO NOT EDIT!
+
+[[permission]]
+identifier = "allow-helper"
+description = "Enables the helper command without any pre-configured scope."
+commands.allow = ["helper"]
+
+[[permission]]
+identifier = "deny-helper"
+description = "Denies the helper command without any pre-configured scope."
+commands.deny = ["helper"]

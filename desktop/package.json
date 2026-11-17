@@ -1,7 +1,7 @@
 {
   "name": "valnivo-crew-app-desktop",
   "private": true,
-  "version": "0.17.0",
+  "version": "0.17.1",
   "description": "Valnivo Crew as an app for macOS and Windows (a Tauri 2 window on crew.valnivo.eu)",
   "scripts": {
     "icons": "tauri icon icon/crew-1024.png -o src-tauri/icons",
