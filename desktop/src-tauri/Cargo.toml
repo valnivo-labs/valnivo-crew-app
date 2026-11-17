@@ -1,0 +1,35 @@
+[package]
+name = "valnivo-console"
+version = "0.17.0"
+description = "Valnivo Crew as an app for macOS and Windows"
+edition = "2021"
+publish = false
+
+[build-dependencies]
+tauri-build = { version = "2", features = [] }
+
+[dependencies]
+tauri = { version = "2", features = [] }
+tauri-plugin-opener = "2"
+tauri-plugin-single-instance = "2"
+tauri-plugin-window-state = "2"
+tauri-plugin-notification = "2"
+tauri-plugin-updater = "2"
+tauri-plugin-process = "2"
+serde_json = "1"
+enigo = "0.2"          # Give control, built into the app (src/control.rs): real mouse and keyboard input
+ureq = { version = "2", default-features = false, features = ["tls"] }   # audit 17 Nov: the app checks the grant's pass with the Console (HTTPS)
+tiny_http = "0.12"     # the local control service on 127.0.0.1:47614 (same protocol as desktop-helper)   # tauri::generate_context! expands to serde_json::json! once plugins.updater is in tauri.conf.json
+
+[profile.release]
+codegen-units = 1
+lto = true
+opt-level = "s"
+panic = "abort"
+strip = true
+
+[target.'cfg(target_os = "macos")'.dependencies]
+macos-accessibility-client = "0.0.1"   # AXIsProcessTrusted(WithOptions): ask the person for Accessibility once
+
+[lints.rust]
+unexpected_cfgs = { level = "warn", check-cfg = ["cfg(win_check)"] }   # RUSTFLAGS="--cfg win_check" cargo check: type-checks the Windows hooks on a Mac
