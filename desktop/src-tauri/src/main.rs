@@ -30,17 +30,24 @@ const HELPER_PATHS: [&str; 3] = ["/health", "/state", "/act"];
 /// control never reached the built-in helper. Inside the app the page hands the call to the app instead; the app forwards it to its
 /// own control service on loopback, unchanged, with the window's real origin (taken from the window, never from the page), so the
 /// service applies exactly the same checks (origin, the grant's pass, the action rules) as for a browser.
+/// Async on purpose (Kabil 18 Nov, "Give control still has an error"): a sync command runs on the main thread, which is also the thread
+/// macOS needs for the helper's mouse and keyboard input, so an /act forwarded from the main thread waited on itself. The blocking HTTP
+/// call runs on a worker thread instead.
 #[tauri::command]
-fn helper(window: tauri::WebviewWindow, path: String, body: Option<String>) -> Result<(u16, String), String> {
+async fn helper(window: tauri::WebviewWindow, path: String, body: Option<String>) -> Result<(u16, String), String> {
     if !HELPER_PATHS.contains(&path.as_str()) { return Err("not a helper path".into()); }
     if body.as_ref().is_some_and(|b| b.len() > 64 * 1024) { return Err("too large".into()); }
     let url = window.url().map_err(|e| e.to_string())?;
     let origin = match (url.scheme(), url.host_str()) { ("https", Some(h)) => format!("https://{h}"), _ => return Err("not the app's page".into()) };
+    tauri::async_runtime::spawn_blocking(move || forward(&origin, &path, body)).await.map_err(|e| e.to_string())?
+}
+
+fn forward(origin: &str, path: &str, body: Option<String>) -> Result<(u16, String), String> {
     let agent = ureq::AgentBuilder::new().timeout(std::time::Duration::from_secs(30)).build();
     let target = format!("http://127.0.0.1:{}{}", control::PORT, path);
     let r = match body {
-        Some(b) => agent.post(&target).set("Origin", &origin).set("Content-Type", "application/json").send_string(&b),
-        None => agent.get(&target).set("Origin", &origin).call(),
+        Some(b) => agent.post(&target).set("Origin", origin).set("Content-Type", "application/json").send_string(&b),
+        None => agent.get(&target).set("Origin", origin).call(),
     };
     match r {
         Ok(resp) => { let code = resp.status(); Ok((code, resp.into_string().unwrap_or_default())) }

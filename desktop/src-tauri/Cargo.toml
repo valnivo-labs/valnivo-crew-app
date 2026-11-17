@@ -1,6 +1,6 @@
 [package]
 name = "valnivo-console"
-version = "0.17.1"
+version = "0.17.2"
 description = "Valnivo Crew as an app for macOS and Windows"
 edition = "2021"
 publish = false
