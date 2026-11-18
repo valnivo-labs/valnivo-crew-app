@@ -1,9 +1,14 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 1024 1024">
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 100 100">
   <title>Valnivo Crew</title>
-  <defs><clipPath id="t"><rect x="100" y="100" width="824" height="824" rx="186"/></clipPath></defs><rect x="100" y="100" width="824" height="824" rx="186" fill="#0a0b0d"/><g clip-path="url(#t)"><g transform="translate(512 522) scale(1.12) translate(-512 -522)">
-<circle cx="300" cy="640" r="140" fill="#d9dadd"/><circle cx="724" cy="640" r="140" fill="#d9dadd"/>
-<g fill="#0a0b0d"><circle cx="228" cy="612" r="17"/><circle cx="274" cy="612" r="17"/><circle cx="750" cy="612" r="17"/><circle cx="796" cy="612" r="17"/></g>
-<path d="M512 420 V322" stroke="#ff6a3d" stroke-width="24" stroke-linecap="round"/><circle cx="512" cy="304" r="40" fill="#ff8c66"/>
-<circle cx="512" cy="596" r="180" fill="#ff6a3d" stroke="#0a0b0d" stroke-width="30" paint-order="stroke"/>
-<g fill="#0a0b0d"><circle cx="464" cy="562" r="25"/><circle cx="560" cy="562" r="25"/></g></g></g><rect x="102" y="102" width="820" height="820" rx="184" fill="none" stroke="#24252b" stroke-width="4"/>
+  <rect width="100" height="100" rx="23" fill="#0a0b0d"/>
+  <rect x="0.4" y="0.4" width="99.2" height="99.2" rx="22.6" fill="none" stroke="#24252b" stroke-width="0.8"/>
+  <rect x="8" y="44" width="28" height="28" rx="9" fill="#3a3b41"/>
+  <rect x="16" y="54" width="4" height="7" rx="2" fill="#0a0b0d"/>
+  <rect x="25" y="54" width="4" height="7" rx="2" fill="#0a0b0d"/>
+  <rect x="64" y="44" width="28" height="28" rx="9" fill="#3a3b41"/>
+  <rect x="71" y="54" width="4" height="7" rx="2" fill="#0a0b0d"/>
+  <rect x="80" y="54" width="4" height="7" rx="2" fill="#0a0b0d"/>
+  <rect x="26" y="30" width="48" height="48" rx="16" fill="#ff6a3d" stroke="#0a0b0d" stroke-width="4"/>
+  <rect x="39" y="46" width="6" height="11" rx="3" fill="#0a0b0d"/>
+  <rect x="55" y="46" width="6" height="11" rx="3" fill="#0a0b0d"/>
 </svg>
