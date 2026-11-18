@@ -4829,7 +4829,7 @@ dependencies = [
 
 [[package]]
 name = "valnivo-console"
-version = "0.17.3"
+version = "0.17.4"
 dependencies = [
  "enigo",
  "macos-accessibility-client",
